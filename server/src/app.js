@@ -7,12 +7,13 @@ const app = express();
 app.use(cors());
 app.use(morgan('combined'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get('/', (req, res) => {
+app.post('/register', (req, res) => {
   res.send({
-    hello: "hello"
-  })
+    hello: `Hello ${req.body.email} - ${req.body.password}`,
+  });
 });
 
-app.listen(process.env.PORT || 3000 )
+app.listen(process.env.PORT || 3000);
